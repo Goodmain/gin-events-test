@@ -14,12 +14,11 @@ func main() {
 	viper.ReadInConfig()
 
 	port := viper.Get("PORT").(string)
-	dbUrl := viper.Get("DB_URL").(string)
 
 	r := gin.Default()
 	r.Use(gin.Recovery())
 	r.Use(gin.Logger())
-	h := pg.Init(dbUrl)
+	h := pg.Init()
 
 	//users.RegisterRoutes(r, h)
 	//events.RegisterRoutes(r, h)

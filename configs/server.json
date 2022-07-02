@@ -1,5 +1,3 @@
 {
-  "PORT": ":3000",
-  "DB_URL": "postgres://vnfuepfz:u1bOzAEijyLq3dhePJN89JyouTzARLg9@abul.db.elephantsql.com/vnfuepfz",
-  "TOKEN_SECRET": "1234567890"
+  "PORT": ":3000"
 }

@@ -2,15 +2,15 @@ package jwtauth
 
 import (
 	"events-hackathon-go/core/models"
+	"os"
 	"strconv"
 	"time"
 
 	jwt_lib "github.com/dgrijalva/jwt-go"
-	"github.com/spf13/viper"
 )
 
 func GenerateToken(user models.User) (string, error) {
-	secret := viper.Get("TOKEN_SECRET").(string)
+	secret := os.Getenv("TOKEN_SECRET")
 	claims := jwt_lib.StandardClaims{
 		Id:        strconv.FormatUint(uint64(user.ID), 10),
 		ExpiresAt: time.Now().Add(time.Hour * 1).Unix(),
@@ -21,8 +21,7 @@ func GenerateToken(user models.User) (string, error) {
 }
 
 func DecodeToken(tokenString string) (string, bool) {
-	secret := viper.Get("TOKEN_SECRET").(string)
-
+	secret := os.Getenv("TOKEN_SECRET")
 	token, _ := jwt_lib.ParseWithClaims(tokenString, &jwt_lib.StandardClaims{}, func(token *jwt_lib.Token) (interface{}, error) {
 		return []byte(secret), nil
 	})

@@ -6,4 +6,5 @@ type Event struct {
 	Name      string  `json:"name"`
 	URL       string  `json:"url"`
 	Users     []*User `json:"users,omitempty" gorm:"many2many:event_users;"`
+	City      string  `json:"city"`
 }

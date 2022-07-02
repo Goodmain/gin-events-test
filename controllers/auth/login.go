@@ -19,6 +19,7 @@ func (h handler) Login(c *gin.Context) {
 	if err := c.ShouldBindJSON(&data); err != nil {
 		c.JSON(http.StatusUnprocessableEntity, gin.H{"error": err.Error()})
 		return
+
 	}
 
 	var user models.User
