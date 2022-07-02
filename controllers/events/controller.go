@@ -1,4 +1,4 @@
-package users
+package events
 
 import (
 	"os"
@@ -20,10 +20,9 @@ func RegisterRoutes(r *gin.Engine, db *gorm.DB) {
 
 	secret := os.Getenv("TOKEN_SECRET")
 
-	routes := r.Group("/users")
+	routes := r.Group("/events")
 	routes.Use(jwt.Auth(secret))
 
-	routes.GET("/profile", h.GetProfile)
-	routes.PUT("/profile", h.UpdateProfile)
-	routes.PUT("/change-password", h.ChangePassword)
+	routes.GET("/", h.SearchEvents)
+	routes.GET("/:id", h.GetEvent)
 }

@@ -1,4 +1,4 @@
-package users
+package events
 
 import (
 	"events-hackathon-go/core/models"
@@ -8,7 +8,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func (h handler) GetProfile(c *gin.Context) {
+func (h handler) GetEvent(c *gin.Context) {
 	id, ok := jwtauth.GetUserID(c)
 	if !ok {
 		c.JSON(http.StatusInternalServerError, "Unable to decode token")
@@ -16,7 +16,7 @@ func (h handler) GetProfile(c *gin.Context) {
 
 	var user models.User
 
-	if result := h.DB.Preload("Friends").First(&user, id); result.Error != nil {
+	if result := h.DB.First(&user, id); result.Error != nil {
 		c.JSON(http.StatusUnprocessableEntity, gin.H{"error": "User not found"})
 		return
 	}

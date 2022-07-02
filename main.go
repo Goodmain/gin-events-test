@@ -2,6 +2,7 @@ package main
 
 import (
 	"events-hackathon-go/controllers/auth"
+	"events-hackathon-go/controllers/events"
 	"events-hackathon-go/controllers/users"
 	"events-hackathon-go/core/services/pg"
 
@@ -22,7 +23,7 @@ func main() {
 	h := pg.Init()
 
 	users.RegisterRoutes(r, h)
-	//events.RegisterRoutes(r, h)
+	events.RegisterRoutes(r, h)
 	auth.RegisterRoutes(r, h)
 
 	r.Run(port)
