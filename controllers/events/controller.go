@@ -25,4 +25,6 @@ func RegisterRoutes(r *gin.Engine, db *gorm.DB) {
 
 	routes.GET("/", h.SearchEvents)
 	routes.GET("/:id", h.GetEvent)
+	routes.PUT("/:id/assign", h.AssignOnEvent)
+	routes.PUT("/:id/unassign", h.UnassignFromEvent)
 }

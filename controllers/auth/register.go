@@ -24,6 +24,11 @@ func (h handler) Register(c *gin.Context) {
 
 	var user models.User
 
+	if result := h.DB.Where(&models.User{Email: data.Email}).First(&user); result.Error == nil {
+		c.JSON(http.StatusUnprocessableEntity, gin.H{"error": "Email already in use"})
+		return
+	}
+
 	user.Email = data.Email
 	user.Name = data.Name
 	user.RawPassword = data.Password
