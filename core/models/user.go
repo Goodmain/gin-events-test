@@ -20,6 +20,7 @@ type User struct {
 	Avatar             string  `json:"avatar"`
 	Friends            []User  `json:"fiends,omitempty" gorm:"many2many:user_friends;"`
 	Events             []Event `json:"events,omitempty" gorm:"many2many:user_events;"`
+	//FriendedBy         []User  `json:"friended_by,omitempty" gorm:"many2many:user_friends;ForeignKey:id;References:friend_id"`
 }
 
 func (u *User) makeHash(password string) (string, error) {

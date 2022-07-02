@@ -27,6 +27,7 @@ func RegisterRoutes(r *gin.Engine, db *gorm.DB) {
 	routes.GET("/profile", h.GetProfile)
 	routes.PUT("/profile", h.UpdateProfile)
 	routes.PUT("/change-password", h.ChangePassword)
+	routes.GET("/friends", h.GetFriends)
 	routes.GET("/:id", h.GetUser)
 	routes.PUT("/:id/add-to-friends", h.AddToFriends)
 	routes.PUT("/:id/remove-from-friends", h.RemoveFromFriends)
