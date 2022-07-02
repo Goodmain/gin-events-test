@@ -15,7 +15,7 @@ type User struct {
 	RawPassword string  `json:"-" gorm:"-"`
 	Avatar      string  `json:"avatar"`
 	Friends     []User  `json:"fiends,omitempty" gorm:"many2many:user_friends;"`
-	Events      []Event `json:"events,omitempty"  gorm:"many2many:user_events;"`
+	Events      []Event `json:"events,omitempty" gorm:"many2many:user_events;"`
 }
 
 func (u *User) makeHash(password string) (string, error) {

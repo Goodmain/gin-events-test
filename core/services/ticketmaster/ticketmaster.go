@@ -261,13 +261,23 @@ func (t *TicketmasterEventList) convertToEvents() []models.Event {
 }
 
 func LoadEvents(city string) ([]models.Event, bool) {
-	events := parseEvents(city, 1)
+	var events []models.Event
 
-	if events.Page.Size == 0 {
+	for i := 20; i >= 1; i-- {
+		eventsList := parseEvents(city, i)
+
+		if eventsList.Page.Size == 0 {
+			break
+		}
+
+		events = append(events, eventsList.convertToEvents()...)
+	}
+
+	if len(events) == 0 {
 		return nil, false
 	}
 
-	return events.convertToEvents(), true
+	return events, true
 }
 
 func parseEvents(city string, page int) TicketmasterEventList {
