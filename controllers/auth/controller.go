@@ -23,6 +23,8 @@ func RegisterRoutes(r *gin.Engine, db *gorm.DB) {
 	routes := r.Group("/auth")
 	routes.POST("/login", h.Login)
 	routes.POST("/register", h.Register)
+	routes.POST("/reset-password", h.ResetPassword)
+	routes.POST("/change-password", h.ChangePassword)
 
 	routes.Use(jwt.Auth(secret))
 	routes.POST("/refresh-token", h.RefreshToken)
