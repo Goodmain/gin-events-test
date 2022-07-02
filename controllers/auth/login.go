@@ -30,7 +30,7 @@ func (h handler) Login(c *gin.Context) {
 	}
 
 	if !user.IsValidPassword(data.Password) {
-		c.JSON(http.StatusForbidden, "Incorrect password")
+		c.JSON(http.StatusUnprocessableEntity, "Incorrect password")
 	}
 
 	token, err := jwtauth.GenerateToken(user)
